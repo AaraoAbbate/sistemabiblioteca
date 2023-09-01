@@ -31,7 +31,7 @@ class Usuario{
      */
     public function cadastrar($dados){
 
-'   '        try{
+        try{
             $query = "INSERT INTO {$this->table} (nome, email,senha,perfil) VALUES (:nome,:email,:senha,:perfil)";
             $stmt = $this->db->prepare($query);
         }catch(PDOException $e){
