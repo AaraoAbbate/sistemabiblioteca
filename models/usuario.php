@@ -17,11 +17,44 @@ class Usuario{
      */
     public function buscar($id){
 
+        try{
+
+            $query = ("SELECT * FROM {$this->table} WHERE id_usuario = :id");
+
+            $stmt = $this->db->prepare($query);  
+
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+ 
+
+            if($usuario){
+
+                echo "ID: " .$usuario['id_usuario'] . "<br>";
+
+                echo "Nome: " .$usuario['nome'] . "<br>";
+
+                echo "E-mail: " .$usuario['email'] . "<br>";
+
+                echo "Perfil: " .$usuario['perfil'] . "<br>";
+
+            } //isso tudo aqui é temporário
+
+        }catch(PDOException $e ){
+
+            echo 'Erro na inserção: ' . $e->getMessage();
+
     }
+}
     /**
      * listar todos os registros da tabela
      */
     public function listar(){
+
+      
 
     }
     /**
@@ -83,6 +116,17 @@ class Usuario{
     }
     //excluir usuario
     public function excluir($id){
+
+        try{
+            $query = "DELETE FROM {$this->table} WHERE id_usuario = :id";
+            $stmt = $this->db->prepare($query);
+            $stmt->blindParam(':id', $id, PDO ::PARAM_INT);
+            $stmt->execute();
+         }catch(PDOException $e){
+            echo "Erro ao Excluir usuario". $e->getMessage();
+         }
+
+        
 
     }
 
