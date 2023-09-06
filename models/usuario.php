@@ -56,7 +56,7 @@ class Usuario{
 
     }
     /**
-     * Cadastrar Usuario
+     * Cadastrar Usuario                                                                                                                                                                                                                                                                         
      * @param array $dados
      * @return bool
      */
