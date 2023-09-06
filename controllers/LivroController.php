@@ -1,7 +1,7 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Usuario.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Livro.php";
 
-class UsuarioController{
+class LivroController{
 
     private $livroModel;
 
@@ -10,7 +10,7 @@ class UsuarioController{
         $this->livroModel = new Livro();
     }
 
-    public function listarUsuario(){
-        return $this->usuarioModel->listar();
+    public function listarLivro(){
+        return $this->livroModel->listar();
     }
 }
