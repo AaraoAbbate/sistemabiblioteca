@@ -32,7 +32,7 @@
 
         ?>
             <tr>
-                <td><?=$livro->id_Livro ?></td>
+                <td><?=$livro->id_livro ?></td>
                 <td><?=$livro->titulo?></td>
                 <td><?=$livro->autor ?></td>
                 <td><?=$livro->numero_pagina ?></td>
@@ -42,7 +42,7 @@
                 <td>
                     <a href="#" class="btn btn-primary">Editar</a>
                     
-                    <a href="#" class="btn btn-danger">excluir</a>
+                    <a href="#" class="btn btn-danger">Excluir</a>
                 </td>
             </tr>
 
