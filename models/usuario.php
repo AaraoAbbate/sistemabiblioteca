@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DBconexao.php";
 
 class Usuario{
@@ -72,9 +73,13 @@ class Usuario{
             $stmt->bindParam(':perfil',$dados['perfil']);
 
             $stmt->execute();
+            $_SESSION['sucesso'] = "Cadastro realizado com sucesso!";
             return true;
         }catch(PDOException $e){
             echo "Erro ao cadastrar".$e->getMessage();
+            $_SESSION['erro'] = "Erro ao cadastrar!";
+
+
             return false; 
         }
 
@@ -90,7 +95,7 @@ class Usuario{
     public function editar($id,$dados){
 
         try{
-            $query = "UPDATE {$this->table} SET nome = :nome, email = :email, senha = :senha , perfil =:perfil WHERE id_usuario = :$id";
+            $query = "UPDATE {$this->table} SET nome = :nome, email = :email, senha = :senha , perfil =:perfil WHERE id_usuario = :id";
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(':nome', $dados['nome']);
             $stmt->bindParam(':email', $dados['email']);
