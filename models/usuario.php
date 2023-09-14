@@ -17,15 +17,15 @@ class Usuario{
      * @return Usuario|null;
      * 
      */
-    public function buscar($id){
+    public function buscar($id_usuario){
 
         try{
 
-            $query = ("SELECT * FROM {$this->table} WHERE id_usuario = :id");
+            $query = ("SELECT * FROM {$this->table} WHERE id_usuario = :id_usuario");
 
             $stmt = $this->db->prepare($query);  
 
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
 
             $stmt->execute(); 
 
@@ -88,38 +88,42 @@ class Usuario{
     
     /**
      * editar usuario
-     * @param int $id
+     * @param int $id_usuario
      * @param array $dados
      * @return bool 
      */
-    public function editar($id,$dados){
+    public function editar($id_usuario,$dados){
 
         try{
-            $query = "UPDATE {$this->table} SET nome = :nome, email = :email, senha = :senha , perfil =:perfil WHERE id_usuario = :id";
+            $query = "UPDATE {$this->table} SET nome = :nome, email = :email, senha = :senha , perfil =:perfil WHERE id_usuario = :id_usuario";
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(':nome', $dados['nome']);
             $stmt->bindParam(':email', $dados['email']);
             $stmt->bindParam(':senha', $dados['senha']);
             $stmt->bindParam(':perfil', $dados['perfil']);
-            $stmt->bindParam(':id', $id,PDO::PARAM_INT);
+            $stmt->bindParam(':id_usuario', $id_usuario,PDO::PARAM_INT);
             $stmt->execute();
+
+            $_SESSION['sucesso'] = "Usuario editado com sucesso ＼(^ω^＼)";
             return true;
         }catch(PDOException $e){
-            echo "erro na preparação da consulta :". $e->getMessage();
+            echo "Erro ao editar o usuario 	(ﾉ￣д￣)ﾉ :". $e->getMessage();
             return false;
         }
   
     }
     //excluir usuario
-    public function excluir($id){
+    public function excluir($id_usuario){
 
         try{
-            $query = "DELETE FROM {$this->table} WHERE id_usuario = :id";
+            $query = "DELETE FROM {$this->table} WHERE id_usuario = :id_usuario";
             $stmt = $this->db->prepare($query);
-            $stmt->bindParam(':id', $id, PDO ::PARAM_INT);
+            $stmt->bindParam(':id_usuario', $id_usuario, PDO ::PARAM_INT);
             $stmt->execute();
+            $_SESSION['sucesso'] = "Usuario excluido com sucesso ヾ(´･ω･｀)";
          }catch(PDOException $e){
             echo "Erro ao Excluir ". $e->getMessage();
+            return false;
          }
 
         

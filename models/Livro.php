@@ -128,13 +128,15 @@ class Livro
 
             $stmt->bindParam(':isbn', $dados['isbn']);
 
- 
+            $stmt->execute();
+            $_SESSION['sucesso'] = "Cadastro realizado com sucesso";
 
             return true;
 
         } catch (PDOException $e) {
 
             echo $e->getMessage();
+            $_SESSION['erro'] = "erro ao cadastrar";
 
             return false;
 
