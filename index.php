@@ -71,50 +71,27 @@
 
             <div class="lista-livros">
 
+            <?php for ($count = 1; $count <= 6; $count++):?>
+
                 <div class="card-livro">
-                    <img src="/assets/img/livro-css.png" alt="CSS">  
+                    <div class="capa">
+                        <img src="/assets/img/livro-css.png" alt="CSS">
+                        <span class="legenda">Lançamento</span> 
+                    </div>
                     <h3>CSS Grid Layout: Criando Layouts Profissionais</h3>
-                </div>
+                </div> 
                 
                 <div class="card-livro">
-                    <img src="/assets/img/livro-html.png" alt="HTML e CSS">  
-                    <h3>HTML e CSS Grid: Guia Prático</h3>
-                </div>
-
-
-                <div class="card-livro">
-                    <img src="/assets/img/livro-css.png" alt="CSS">  
+                    <div class="capa">
+                        <img src="/assets/img/livro-HTML.png" alt="CSS">
+                        <span class="black-friday">Black Friday</span> 
+                    </div>
                     <h3>CSS Grid Layout: Criando Layouts Profissionais</h3>
+                </div> 
+            
+            <?php endfor; ?>
+                    
                 </div>
-                
-                <div class="card-livro">
-                    <img src="/assets/img/livro-html.png" alt="HTML e CSS">  
-                    <h3>HTML e CSS Grid: Guia Prático</h3>
-                </div>
-
-
-                <div class="card-livro">
-                    <img src="/assets/img/livro-css.png" alt="CSS">  
-                    <h3>CSS Grid Layout: Criando Layouts Profissionais</h3>
-                </div>
-                
-                <div class="card-livro">
-                    <img src="/assets/img/livro-html.png" alt="HTML e CSS">  
-                    <h3>HTML e CSS Grid: Guia Prático</h3>
-                </div>
-
-
-                <div class="card-livro">
-                    <img src="/assets/img/livro-css.png" alt="CSS">  
-                    <h3>CSS Grid Layout: Criando Layouts Profissionais</h3>
-                </div>
-                
-                <div class="card-livro">
-                    <img src="/assets/img/livro-html.png" alt="HTML e CSS">  
-                    <h3>HTML e CSS Grid: Guia Prático</h3>
-                </div>
-
-            </div>
         </section>
     </main>
 
@@ -142,15 +119,15 @@
             <div class="bloco-rodape">
                 <h2>Rede Sociais</h2>
                 <ul>
-                    <li>Ícone Facebook</li>
-                    <li>Ícone Instagram</li>
+                    <li> Facebook</li>
+                    <li> Instagram</li>
                 </ul>
             </div>
 
         </div>
 
         <div id="copyright">
-                &copy; 2023 - Todos os direitos são reservados - Desenvolvido por Rafael
+                &copy; 2023 - Todos os direitos são reservados - Desenvolvido por Aarão Abbate
         </div>
     </footer>
     <script src="assets/js/main.js"></script>
