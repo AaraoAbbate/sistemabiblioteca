@@ -23,10 +23,19 @@ body{
     padding: 15px;
 }
 
+.barra-topo {
+    position: fixed;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 999999;
+}
+
 #cabecalho{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 70px;
+    
 }
 
 #menu ul{
@@ -63,6 +72,7 @@ body{
     justify-content: center;
     text-align: center;
     color: #ffffff;
+    padding-top: 70px;
 
     
 }
@@ -141,7 +151,7 @@ body{
 
 .card-livro{
     flex-grow: 1;
-    width: calc(25% - 30px);
+    width: calc((100% / 4) - 30px);
     position: relative;
     
 }
@@ -156,6 +166,12 @@ body{
     border-radius: 15px;
     font-weight: bold;
 
+}
+
+.card-livro h3 {
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
 }
 
 .legenda{
@@ -178,10 +194,12 @@ body{
 
 #rodape .container{
     display: flex;
+    flex-wrap: wrap;
 }
 
 .bloco-rodape{
     flex-grow: 1;
+    width: calc(100%/3);
 }
 
 .bloco-rodape ul{
@@ -203,4 +221,52 @@ body{
     text-align: center;
     padding: 20px;
 
+}
+
+#botao-mobile {
+    display: none;
+}
+/* estilo para mobile */
+
+@media (max-width: 767px) {
+   #botao-mobile {
+    display: block;
+    margin-right: 20px;
+    cursor: pointer;
+   }
+
+   #menu{
+    position: fixed;
+    background-color: #ffffff;
+    top: 70px;
+    left: -255px;
+    width: 250px;
+    height: 100vh;
+    z-index: 999999;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+    transition: left 0.5s;
+   }
+
+   #menu.menu-ativo{
+        left: 0;
+   }
+
+   #menu ul {
+    display: block;
+    margin-top: 20px;
+   }
+
+   #menu ul li {
+    padding: 10px;
+   }
+
+   .card-livro {
+    width: calc((100% / 2) - 30px);
+   }
+
+   .bloco-rodape {
+    flex-grow: 1;
+    width: calc(100% / 2);
+    flex-wrap: wrap;
+   }
 }

@@ -18,8 +18,18 @@
 </head>
 
 <body>
+    <div class="barra-topo">
 
     <header id="cabecalho" class="container">
+
+        <div id="botao-mobile">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </div>
+        
+
+
         <div id="logotipo">
             <h1><img src="assets/img/logotipo.png" alt="BookMeNow" height="30"></h1>
         </div>
@@ -37,6 +47,8 @@
             <a href="#" class="btn-secundario">Registrar</a>
         </div>
     </header>
+
+    </div>
 
     <div id="banner">
         <div class="container">
