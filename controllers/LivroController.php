@@ -1,7 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Livro.php";
 
-class LivroController{
+class LivroController
+{
 
     private $livroModel;
 
@@ -10,56 +11,78 @@ class LivroController{
         $this->livroModel = new Livro();
     }
 
-    public function listarLivro(){
+    public function listarLivros()
+    {
         return $this->livroModel->listar();
     }
 
-    
-    public function cadastrarLivro(){
-
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
-
+    public function cadastrarLivro()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dados = [
                 'titulo' => $_POST['titulo'],
-                'autor' => $_POST['autor'], 
+                'autor' => $_POST['autor'],
                 'numero_pagina' => $_POST['numero_pagina'],
                 'preco' => $_POST['preco'],
                 'ano_publicacao' => $_POST['ano_publicacao'],
                 'isbn' => $_POST['isbn']
             ];
 
+            if(isset($_FILES['capa']['name']) && !empty($_FILES['capa']['name'])){
+                $fileInfo = pathinfo($_FILES['capa']['name']);
+
+                // GERA UM NOVO NOME ALEATORIO 
+                $nomeArquivo = md5(uniqid());
+                //DIRETORIO DE DESTINO
+                $uploaDir = __DIR__."/../uploads/";
+                // GARANTE QUE A PASTA EXISTE
+                if(!is_dir($uploaDir)){ 
+                    mkdir($uploaDir,0777, true);
+                 }
+                // RENOMIEIA O ARQUIVO ORIGINAL PARA O NOME ALEATORIO
+                $novoNomeArquivo = $nomeArquivo.".". $fileInfo['extension'];
+                // CONFIGURE A PASTA DE DESTINO, ONDE O ARQUIVO SERA SALVO
+                $pastaDestino = $uploaDir . $novoNomeArquivo;
+                //salva o arquivo na pasta
+                move_uploaded_file($_FILES['capa']['tmp_name'], $pastaDestino);
+
+                $dados['capa'] = $novoNomeArquivo;
+            }
             $this->livroModel->cadastrar($dados);
-            header('location: index.php');
+
+            header('Location: index.php');
             exit;
-            //var_dump($dados);
         }
+
+
     }
 
-    public function editarLivro(){
+    public function editarLivro()
+    {
+        $id_livro = $_GET['id_livro'];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $id_livro=$_GET['id_livro'];
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
-
-        
             $dados = [
                 'titulo' => $_POST['titulo'],
                 'autor' => $_POST['autor'],
-                 //password_hash Password_default são formatos de criptografias de senhas altamente seguras
-                'perfil' => $_POST['perfil']
+                'numero_pagina' => $_POST['numero_pagina'],
+                'preco' => $_POST['preco'],
+                'ano_publicacao' => $_POST['ano_publicacao'],
+                'isbn' => $_POST['isbn']
             ];
 
             $this->livroModel->editar($id_livro, $dados);
-
-            header('location: index.php');
+            header('Location: index.php');
             exit;
+        }
+
+        return $this->livroModel->buscar($id_livro);
     }
-    return $this->livroModel->buscar($id_livro);
-}
 
-public function excluirLivro(){
-    $this->livroModel->excluir($_GET['id_livro']);
-    
-    header('location: index.php');
-            exit;
-}
+    public function excluirLivro()
+    {
+        $this->livroModel->excluir($_GET['id_livro']);
+        header('Location: index.php');
+        exit;
+    }
 }

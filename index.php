@@ -36,7 +36,7 @@
 
         <nav id="menu">
             <ul>
-                <li><a href="#">Categorias</a></li>
+                <li><a href="/admin/index.php">Categorias</a></li>
                 <li><a href="#">Sobre Nós</a></li>
                 <li><a href="#">Contato</a></li>
             </ul>
@@ -143,7 +143,12 @@
         </div>
     </footer>
     <script src="assets/js/main.js"></script>
+
+    
+
 </body>
 
 </html>
+
+
 
